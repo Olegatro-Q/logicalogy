@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pickup : MonoBehaviour
 {
@@ -12,18 +13,21 @@ public class Pickup : MonoBehaviour
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            for(int i = 0; i < inventory.slots.Length; i++)
+            if (Input.GetKey(KeyCode.T))
             {
-                if(inventory.isFull[i] == false)
+                for (int i = 0; i < inventory.slots.Length; i++)
                 {
-                    inventory.isFull[i] = true;
-                    Instantiate(slotButton, inventory.slots[i].transform);
-                    Destroy(gameObject);
-                    break;
+                    if (inventory.isFull[i] == false)
+                    {
+                        inventory.isFull[i] = true;
+                        Instantiate(slotButton, inventory.slots[i].transform);
+                        Destroy(gameObject);
+                        break;
+                    }
                 }
             }
         }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7636684786994297753}
   m_Layer: 0
   m_Name: Potion (UpHealth)
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1409318530446748540, guid: d3abd4578b998524daaf5bc017814f14,
     type: 3}
+  emptySlotIcon: []
 --- !u!58 &-7636684786994297753
 CircleCollider2D:
   m_ObjectHideFlags: 0

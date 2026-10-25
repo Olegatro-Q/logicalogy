@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class Slot : MonoBehaviour
         if(transform.childCount <= 0)
         {
             inventory.isFull[i] = false;
+        }
+    }
+
+    public void UseItem()
+    {
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 

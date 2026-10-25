@@ -8,6 +8,7 @@ TagManager:
   - Bloque
   - Platform1
   - Platform2
+  - Pickable
   layers:
   - Default
   - TransparentFX
