@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DestruirDecoraCion
   - Bloque
+  - Platform1
+  - Platform2
   layers:
   - Default
   - TransparentFX

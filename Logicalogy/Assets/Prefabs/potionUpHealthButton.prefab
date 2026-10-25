@@ -88,3 +88,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 3051462430397121215, guid: dfa59b057111b6b4c9678420ba9a3191, type: 3}
+  plusToPlayerPosX: 1
+  plusToPlayerPosY: 0.3

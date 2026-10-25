@@ -10,14 +10,17 @@ public class movementPlayer : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private bool facingRight = true;
+    public bool facingRight = true;
 
-    private bool isGrounded; // проверка приземлился ли игрок
+    public bool isGrounded; // проверка приземлился ли игрок
     public Transform feetPos; // поз. ног игрока
     public float checkRadius; // насколько близко игрок должен находиться к земле
     public LayerMask whatIsGround; // что мы будем считать за землю
+    [SerializeField] private float rayDistance = 0.6f; // длина луча (луч нужен для отслеживания на чём конкретно мы стоим)
+    public string platformUnderMe; // некий идентификатор платформы подо мной
 
     private Animator anim;
+
 
     private void Start()
     {
@@ -50,6 +53,7 @@ public class movementPlayer : MonoBehaviour
 
     private void Update()
     {
+        checkPlatform();
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
         if(isGrounded == true && Input.GetKeyDown(KeyCode.Space))
@@ -74,5 +78,28 @@ public class movementPlayer : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    private void checkPlatform() // на чём конкретно мы стоим
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, whatIsGround); // пускаем луч вниз
+
+        if(hit.collider != null) // если луч во что-то упёрся
+        {
+            if(hit.collider.CompareTag("Platform1"))
+            {
+                platformUnderMe = "Platform1";
+            }
+            else if(hit.collider.CompareTag("Platform2"))
+            {
+                platformUnderMe = "Platform2";
+            }
+        }
+    }
+
+    private void OnDrawGizmos() // встроенная функция для отрисовки чего-либо в РЕДАКТОРЕ СЦЕНЫ (в моём случается используется для отрисовки луча)
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistance);
     }
 }
